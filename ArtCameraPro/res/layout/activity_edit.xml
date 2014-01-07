@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_dark" >
+
+        <ImageButton
+            android:id="@+id/btSelectEffect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/selector_menu_toggle" />
+
+        <ImageButton
+            android:id="@+id/effectToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btSelectEffect"
+            android:background="@drawable/selector_effect_toggle" />
+
+        <ImageButton
+            android:id="@+id/socialUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+      
+            android:layout_toRightOf="@id/effectToggle"
+            android:background="@drawable/selector_social_upload" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/svListEffect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutBottom"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/horizontal_curve_stroke"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="14dp" >
+
+            <RelativeLayout
+                android:id="@+id/layout_btn1After"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp" >
+
+                <ImageButton
+                    android:id="@+id/btPointilize"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/one" />
+
+                <TextView
+                    android:id="@+id/textview1After"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btPointilize"
+                    android:text="Xray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn2After"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn1After" >
+
+                <ImageButton
+                    android:id="@+id/btBlur"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/two" />
+
+                <TextView
+                    android:id="@+id/textview2After"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btBlur"
+                    android:text="Xray2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn3After"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn2After" >
+
+                <ImageButton
+                    android:id="@+id/btGaussian"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/three" />
+
+                <TextView
+                    android:id="@+id/textview3After"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btGaussian"
+                    android:text="Xray3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn4After"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn3After" >
+
+                <ImageButton
+                    android:id="@+id/image4After"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/four" />
+
+                <TextView
+                    android:id="@+id/textview4After"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image4After"
+                    android:text="Xray3" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
+	<ImageView 
+	    android:id="@+id/ivImageEdit"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    android:layout_above="@id/layoutBottom"
+	    android:layout_marginBottom="140dp"
+	    android:layout_marginTop="20dp"
+	    
+	    />
+</RelativeLayout>

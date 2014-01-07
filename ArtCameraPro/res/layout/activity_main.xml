@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <FrameLayout
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/topMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_curve" >
+
+        <ImageButton
+            android:id="@+id/switchCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/cameratoggle_white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_dark" >
+
+        <ImageButton
+            android:id="@+id/snapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/camera_default" />
+
+        <ImageButton
+            android:id="@+id/menuToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/selector_menu_toggle" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutBottom"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/horizontal_curve_stroke"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="14dp" >
+
+            <RelativeLayout
+                android:id="@+id/layout_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp" >
+
+                <ImageButton
+                    android:id="@+id/image1"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/one" />
+
+                <TextView
+                    android:id="@+id/textview1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image1"
+                    android:text="Xray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn1" >
+
+                <ImageButton
+                    android:id="@+id/image2"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/two" />
+
+                <TextView
+                    android:id="@+id/textview2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image2"
+                    android:text="Xray2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn2" >
+
+                <ImageButton
+                    android:id="@+id/image3"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/three" />
+
+                <TextView
+                    android:id="@+id/textview3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image3"
+                    android:text="Xray3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn3" >
+
+                <ImageButton
+                    android:id="@+id/image4"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/four" />
+
+                <TextView
+                    android:id="@+id/textview4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image4"
+                    android:text="Xray3" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/middleMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/scrollView"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/topMenu" >
+
+        <hust.team7.ui.VerticalSeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
