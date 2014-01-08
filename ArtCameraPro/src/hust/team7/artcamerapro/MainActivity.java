@@ -12,11 +12,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.Toast;
-import android.widget.ZoomControls;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -24,8 +26,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Camera mCamera;
 	private int numberOfCameras;
 	private int cameraCurrentlyLocked;
-	private ZoomControls mZoomControl;
-	private int currentZoomLevel;
+	private SeekBar mSeekBar;
 	private Boolean checkToogle;
 	public static Handler mHandler;
 	
@@ -58,6 +59,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		initButtons();
 		
+		/**
+	    send data to intent and start new activity
+	   @param 
+	   @author 7-B Nguyen Quoc Hung
+	   */
 		mHandler = new Handler(){
 
 			@Override
@@ -92,6 +98,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		mBtnTakePicture = (ImageButton) findViewById(R.id.snapBtn);
 		mBtnSwitchCamera = (ImageButton) findViewById(R.id.switchCamera);
 		mBtnMenuToogle = (ImageButton) findViewById(R.id.menuToggle);
+		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		honView = (HorizontalScrollView) findViewById(R.id.scrollView);
 		
 		mBtnMenuToogle.setOnClickListener(new OnClickListener() {
@@ -102,14 +109,21 @@ public class MainActivity extends Activity implements OnClickListener {
 				
 				if (checkToogle)
 				{
-					honView.setVisibility(View.INVISIBLE);
+					Animation bottomUp = AnimationUtils.loadAnimation(getBaseContext(),
+				            R.anim.bottom_up);
+
+				honView.setAnimation(bottomUp);
+				honView.setVisibility(View.VISIBLE);
 					checkToogle = false;
 				} else {
-					honView.setVisibility(View.VISIBLE);
+					
+					Animation bottomDown = AnimationUtils.loadAnimation(getBaseContext(),
+				            R.anim.bottom_down);
+
+				honView.setAnimation(bottomDown);
+					honView.setVisibility(View.INVISIBLE);
 					checkToogle = true;
 				}
-				
-
 			}
 		});
 		mBtnTakePicture.setOnClickListener(new OnClickListener() {
@@ -187,9 +201,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		cameraCurrentlyLocked = defaultCameraId;
 		mPreview.setCamera(mCamera);
 
-		// initZoomControl();
+		initZoomControl();
 	}
 
+	/**
+    zoom camera by seekbar 
+   @param 
+   @author 7-B Nguyen Quoc Hung
+   */
 	private void initZoomControl() {
 		if (mCamera == null) {
 			return;
@@ -197,35 +216,57 @@ public class MainActivity extends Activity implements OnClickListener {
 		Camera.Parameters camParam = mCamera.getParameters();
 		if (camParam != null) {
 			if (camParam.isZoomSupported()) {
-				mZoomControl.setVisibility(View.VISIBLE);
+				mSeekBar.setVisibility(View.VISIBLE);
 				final int maxZoomLevel = camParam.getMaxZoom();
-				mZoomControl.setIsZoomInEnabled(true);
-				mZoomControl.setIsZoomOutEnabled(true);
+				
+				mSeekBar.incrementProgressBy(1);
+				mSeekBar.setMax(maxZoomLevel);
+				mSeekBar.setProgress(0);
 
-				mZoomControl.setOnZoomInClickListener(new OnClickListener() {
-
+				mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+					
 					@Override
-					public void onClick(View v) {
-						if (currentZoomLevel < maxZoomLevel) {
-							currentZoomLevel++;
-							mPreview.setCameraZoom(currentZoomLevel);
-						}
+					public void onStopTrackingTouch(SeekBar seekBar) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+						// TODO Auto-generated method stub
+						mPreview.setCameraZoom(progress);
 					}
 				});
-
-				mZoomControl.setOnZoomOutClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						if (currentZoomLevel > 0) {
-							currentZoomLevel--;
-							mPreview.setCameraZoom(currentZoomLevel);
-						}
-					}
-				});
+//				mZoomControl.setOnZoomInClickListener(new OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//						if (currentZoomLevel < maxZoomLevel) {
+//							currentZoomLevel++;
+//							mPreview.setCameraZoom(currentZoomLevel);
+//						}
+//					}
+//				});
+//
+//				mZoomControl.setOnZoomOutClickListener(new OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//				if (currentZoomLevel > 0) {
+//							currentZoomLevel--;
+//							mPreview.setCameraZoom(currentZoomLevel);
+//						}
+//					}
+//				});
 
 			} else {
-				mZoomControl.setVisibility(View.GONE);
+				mSeekBar.setVisibility(View.INVISIBLE);
 			}
 		}
 	}
