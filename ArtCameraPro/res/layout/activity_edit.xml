@@ -2,7 +2,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+	
+    <RelativeLayout
+        android:id="@+id/topMenuEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/background_dark" >
 
+        <ImageButton
+            android:id="@+id/btSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/cameratoggle_white" />
+
+        <ImageButton
+            android:id="@+id/btBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/cameratoggle_white" />
+
+        <ImageButton
+            android:id="@+id/btContBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btBack"
+            android:background="@drawable/selector_menu_toggle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/svListContBright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topMenuEdit"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/horizontal_curve_stroke"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="14dp" >
+
+            <RelativeLayout
+                android:id="@+id/layout_topContBright1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvCont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvCont"/>
+                <SeekBar 
+                    android:id="@+id/sbarContBright1"
+                    android:layout_toRightOf="@id/tvCont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+              <RelativeLayout
+                android:id="@+id/layout_topContBright2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:layout_below="@id/layout_topContBright1">
+
+                <TextView
+                    android:id="@+id/tvBright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvBright"/>
+                <SeekBar 
+                    android:id="@+id/sbarContBright2"
+                    android:layout_toRightOf="@id/tvBright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    
     <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
@@ -174,19 +262,41 @@
             android:layout_marginTop="14dp" >
 
             <RelativeLayout
-                android:id="@+id/layout_btn1After"
+                android:id="@+id/layout_btn1Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp" >
 
                 <ImageButton
-                    android:id="@+id/btWarmVintage"
+                    android:id="@+id/btOriginal"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
                     android:src="@drawable/one" />
 
                 <TextView
-                    android:id="@+id/textview1After"
+                    android:id="@+id/textview1Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btOriginal"
+                    android:text="@string/bt_original" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn2Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn1Color" >
+
+                <ImageButton
+                    android:id="@+id/btWarmVintage"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/two" />
+
+                <TextView
+                    android:id="@+id/textview2Color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -195,20 +305,20 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_btn2After"
+                android:id="@+id/layout_btn3Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/layout_btn1After" >
+                android:layout_toRightOf="@id/layout_btn2Color" >
 
                 <ImageButton
                     android:id="@+id/btColdVintage"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/two" />
+                    android:background="@drawable/three" />
 
                 <TextView
-                    android:id="@+id/textview2After"
+                    android:id="@+id/textview3Color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -217,47 +327,91 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_btn3After"
+                android:id="@+id/layout_btn4Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/layout_btn2After" >
+                android:layout_toRightOf="@id/layout_btn3Color" >
 
                 <ImageButton
                     android:id="@+id/btInvert"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/three" />
+                    android:background="@drawable/four" />
 
                 <TextView
-                    android:id="@+id/textview3After"
+                    android:id="@+id/textview4Color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@id/btInvert"
                     android:text="@string/bt_invert" />
             </RelativeLayout>
-
+            
             <RelativeLayout
-                android:id="@+id/layout_btn4After"
+                android:id="@+id/layout_btn5Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/layout_btn3After" >
+                android:layout_toRightOf="@id/layout_btn4Color" >
 
                 <ImageButton
-                    android:id="@+id/image4After"
+                    android:id="@+id/btGrayscale"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
                     android:background="@drawable/four" />
 
                 <TextView
-                    android:id="@+id/textview4After"
+                    android:id="@+id/textview5Color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@id/image4After"
-                    android:text="Xray3" />
+                    android:layout_below="@id/btGrayscale"
+                    android:text="@string/bt_gray_scale" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn6Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn5Color" >
+
+                <ImageButton
+                    android:id="@+id/btGain"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/four" />
+
+                <TextView
+                    android:id="@+id/textview6Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btGain"
+                    android:text="@string/bt_gain" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn7Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn6Color" >
+
+                <ImageButton
+                    android:id="@+id/btThreshold1950"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/four" />
+
+                <TextView
+                    android:id="@+id/textview7Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btThreshold1950"
+                    android:text="@string/bt_threshold_1950" />
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
