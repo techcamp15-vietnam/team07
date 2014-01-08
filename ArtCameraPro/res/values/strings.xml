@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppCamera</string>
+    <string name="app_name">Art Camera Pro</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="camera_alert">Your device has only one camera</string>
+    <string name="bt_pointilize">Pointilize</string>
+    <string name="bt_contour">Contour</string>
+    <string name="bt_warm_vintage">Warm Vinage</string>
+    <string name="bt_cold_vintage">Cold Vintage</string>
+    <string name="bt_invert">Negative</string>
 
 </resources>
