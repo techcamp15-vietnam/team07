@@ -196,12 +196,23 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
     	mCamera.takePicture(shutterCallback, rawCallback, pictureCallback);
     }
     
+    /**
+    create file for app (if not existed) and save image 
+   @param 
+   @author 7-B Nguyen Quoc Hung
+   */
     private String createFileName(){
     	
     	String state = Environment.getExternalStorageState();
-    	if(state.equals(Environment.MEDIA_MOUNTED)){
-    		String sFileName = Environment.getExternalStorageDirectory() + File.separator + System.currentTimeMillis() + ".jpg";
+    	if(state.equals(Environment.MEDIA_MOUNTED)){   		
+    		File folder = new File(Environment.getExternalStorageDirectory() + "/ArtCameraPro");
+    		boolean success = true;
+    		if (!folder.exists()) {
+    		    success = folder.mkdir();
+    		} 
+    		String sFileName = Environment.getExternalStorageDirectory() + "/ArtCameraPro" + File.separator + System.currentTimeMillis() + ".jpg";
     		return sFileName;
+    		
     	}
     	return "";
     }
