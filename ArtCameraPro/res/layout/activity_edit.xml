@@ -11,28 +11,34 @@
         android:background="@android:color/background_dark" >
 
         <ImageButton
-            android:id="@+id/btSelectEffect"
+            android:id="@+id/btSelectColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/selector_menu_toggle" />
+            android:background="@drawable/selector_effect_toggle" />
 
         <ImageButton
-            android:id="@+id/effectToggle"
+            android:id="@+id/btSelectEffect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/btSelectEffect"
-            android:background="@drawable/selector_effect_toggle" />
+            android:layout_toRightOf="@id/btSelectColor"
+            android:background="@drawable/selector_menu_toggle" />
 
         <ImageButton
             android:id="@+id/socialUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-      
-            android:layout_toRightOf="@id/effectToggle"
+            android:layout_toRightOf="@id/btSelectEffect"
             android:background="@drawable/selector_social_upload" />
     </RelativeLayout>
-
+	<ImageView 
+	    android:id="@+id/ivImageEdit"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    android:layout_above="@id/layoutBottom"
+	    android:layout_marginBottom="140dp"
+	    android:layout_marginTop="20dp"
+	    />
     <HorizontalScrollView
         android:id="@+id/svListEffect"
         android:layout_width="match_parent"
@@ -140,13 +146,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
-	<ImageView 
-	    android:id="@+id/ivImageEdit"
-	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"
-	    android:layout_above="@id/layoutBottom"
-	    android:layout_marginBottom="140dp"
-	    android:layout_marginTop="20dp"
-	    
-	    />
+
 </RelativeLayout>
