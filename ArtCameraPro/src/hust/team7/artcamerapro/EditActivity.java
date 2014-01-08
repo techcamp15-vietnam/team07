@@ -53,7 +53,7 @@ public class EditActivity extends Activity implements OnClickListener {
 	private Bitmap bmpImage, bmpResult;
 	private int check;
 	private String file_name;
-	private Boolean checkSelect = true;
+	private Boolean checkbtContBright = true;
 	private int aCheckFlag;
 
 	@Override
@@ -362,10 +362,18 @@ public class EditActivity extends Activity implements OnClickListener {
 			
 			
 		case R.id.btContBright:	
-			
+			if(checkbtContBright){
 			svContBright.setAnimation(bottomDown);
 			svContBright.setVisibility(View.VISIBLE);
+			}else {
+				
+				svContBright.setAnimation(bottomUp);
+				svContBright.setVisibility(View.VISIBLE);
+				
+				
+			}
 			break;
+			
 		/*
 		 * case R.id.btSelectEffect: if (checkSelect) {
 		 * 
