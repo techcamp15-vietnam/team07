@@ -164,6 +164,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/scrollView"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/topMenu" >
 
         <hust.team7.ui.VerticalSeekBar
