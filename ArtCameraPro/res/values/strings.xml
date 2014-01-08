@@ -10,5 +10,11 @@
     <string name="bt_warm_vintage">Warm Vinage</string>
     <string name="bt_cold_vintage">Cold Vintage</string>
     <string name="bt_invert">Negative</string>
+    <string name="bt_original">Original</string>
+    <string name="bt_gray_scale">Black &amp; Write</string>
+    <string name="bt_gain">Gain Color</string>
+    <string name="bt_threshold_1950">1950s</string>
+    <string name="tvCont">Contrast</string>
+    <string name="tvBright">Contrast</string>
 
 </resources>
