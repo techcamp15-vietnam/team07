@@ -11,12 +11,22 @@ public class InvertFilterAction {
 	private int height;
 	private int[] colors;
 
+	/**
+	Constructor InvertFilterAction
+	@param bmp
+	@author 7-A Bui Quang Tan
+	*/
 	public InvertFilterAction(Bitmap bmp) {
 		this.bmp = bmp;
 		this.width = bmp.getWidth();
 		this.height = bmp.getHeight();
 	}
 
+	/**
+	Handler Invert Effect
+	@param no param
+	@author 7-A Bui Quang Tan
+	*/
 	public Bitmap action() {
 		colors = AndroidUtils.bitmapToIntArray(this.bmp);
 		InvertFilter filter = new InvertFilter();
