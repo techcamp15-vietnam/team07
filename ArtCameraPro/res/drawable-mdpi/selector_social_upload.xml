@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-          android:drawable="@drawable/edit_glyph_lux_on" /> <!-- pressed -->x
+          android:drawable="@drawable/share_button_active_small" /> <!-- pressed -->x
     <item android:state_focused="true"
-          android:drawable="@drawable/edit_glyph_lux_on" /> <!-- focused -->
+          android:drawable="@drawable/share_button_active_small" /> <!-- focused -->
     <item android:state_hovered="true"
-          android:drawable="@drawable/edit_glyph_lux_on" /> <!-- hovered -->
-    <item android:drawable="@drawable/edit_glyph_lux" /> <!-- default -->
+          android:drawable="@drawable/share_button_active_small" /> <!-- hovered -->
+    <item android:drawable="@drawable/share_button_small" /> <!-- default -->
 </selector>
