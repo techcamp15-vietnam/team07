@@ -10,18 +10,20 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener {
-
+public class MainActivity extends Activity implements  OnTouchListener {
 	private Preview mPreview;
 	private Camera mCamera;
 	private int numberOfCameras;
@@ -29,7 +31,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private SeekBar mSeekBar;
 	private Boolean checkToogle;
 	public static Handler mHandler;
-	
+	private RelativeLayout mSeekbarLayout;
 	// The first rear facing camera
 	int defaultCameraId;
 	private ImageButton mBtnTakePicture;
@@ -41,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		checkToogle=true;
+		checkToogle = true;
 		FrameLayout previewLayout = (FrameLayout) findViewById(R.id.preview);
 		mPreview = new Preview(MainActivity.this);
 		previewLayout.addView(mPreview);
@@ -58,23 +60,25 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 		initButtons();
-		
+
 		/**
-	    send data to intent and start new activity
-	   @param 
-	   @author 7-B Nguyen Quoc Hung
-	   */
-		mHandler = new Handler(){
+		 * send data to intent and start new activity
+		 * 
+		 * @param
+		 * @author 7-B Nguyen Quoc Hung
+		 */
+		mHandler = new Handler() {
 
 			@Override
 			public void handleMessage(Message msg) {
-				//chuyen activity khac
-				if(msg.what ==1){
-					String sFileName = (String)msg.obj;
+				// chuyen activity khac
+				if (msg.what == 1) {
+					String sFileName = (String) msg.obj;
 					Log.e("Got 1231231", sFileName);
 					Log.e("Got 12", sFileName);
-				
-					Intent intent = new Intent(MainActivity.this,EditActivity.class);
+
+					Intent intent = new Intent(MainActivity.this,
+							EditActivity.class);
 					Log.e("Got 13", sFileName);
 					try {
 						Log.e("Got 14", sFileName);
@@ -82,15 +86,16 @@ public class MainActivity extends Activity implements OnClickListener {
 						Log.e("Got 15", sFileName);
 						startActivity(intent);
 					} catch (Exception e) {
-						Log.e("bi loi ",e.getMessage());
-						Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+						Log.e("bi loi ", e.getMessage());
+						Toast.makeText(MainActivity.this, e.getMessage(),
+								Toast.LENGTH_SHORT).show();
 					}
-					
-					//finish();
+
+					// finish();
 				}
-				
+
 			}
-			
+
 		};
 	}
 
@@ -100,27 +105,30 @@ public class MainActivity extends Activity implements OnClickListener {
 		mBtnMenuToogle = (ImageButton) findViewById(R.id.menuToggle);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		honView = (HorizontalScrollView) findViewById(R.id.scrollView);
+		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
+		//mSeekbarLayout = (RelativeLayout) findViewById(R.id.middleMenu);
+		//mSeekbarLayout.setOnTouchListener(this) ;
 		
+		View view = findViewById(R.id.touch_view);
+		view.setOnTouchListener(this);
 		mBtnMenuToogle.setOnClickListener(new OnClickListener() {
-			
 
 			@Override
 			public void onClick(View v) {
-				
-				if (checkToogle)
-				{
-					Animation bottomUp = AnimationUtils.loadAnimation(getBaseContext(),
-				            R.anim.bottom_up);
 
-				honView.setAnimation(bottomUp);
-				honView.setVisibility(View.VISIBLE);
+				if (checkToogle) {
+					Animation bottomUp = AnimationUtils.loadAnimation(
+							getBaseContext(), R.anim.bottom_up);
+
+					honView.setAnimation(bottomUp);
+					honView.setVisibility(View.VISIBLE);
 					checkToogle = false;
 				} else {
-					
-					Animation bottomDown = AnimationUtils.loadAnimation(getBaseContext(),
-				            R.anim.bottom_down);
 
-				honView.setAnimation(bottomDown);
+					Animation bottomDown = AnimationUtils.loadAnimation(
+							getBaseContext(), R.anim.bottom_down);
+
+					honView.setAnimation(bottomDown);
 					honView.setVisibility(View.INVISIBLE);
 					checkToogle = true;
 				}
@@ -205,10 +213,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-    zoom camera by seekbar 
-   @param 
-   @author 7-B Nguyen Quoc Hung
-   */
+	 * zoom camera by seekbar
+	 * 
+	 * @param
+	 * @author 7-B Nguyen Quoc Hung
+	 */
 	private void initZoomControl() {
 		if (mCamera == null) {
 			return;
@@ -218,52 +227,54 @@ public class MainActivity extends Activity implements OnClickListener {
 			if (camParam.isZoomSupported()) {
 				mSeekBar.setVisibility(View.VISIBLE);
 				final int maxZoomLevel = camParam.getMaxZoom();
-				
+
 				mSeekBar.incrementProgressBy(1);
 				mSeekBar.setMax(maxZoomLevel);
 				mSeekBar.setProgress(0);
 
 				mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-					
+
 					@Override
 					public void onStopTrackingTouch(SeekBar seekBar) {
 						// TODO Auto-generated method stub
-						
+
 					}
-					
+
 					@Override
 					public void onStartTrackingTouch(SeekBar seekBar) {
 						// TODO Auto-generated method stub
-						
+
 					}
-					
+
 					@Override
-					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+					public void onProgressChanged(SeekBar seekBar,
+							int progress, boolean fromUser) {
 						// TODO Auto-generated method stub
 						mPreview.setCameraZoom(progress);
 					}
 				});
-//				mZoomControl.setOnZoomInClickListener(new OnClickListener() {
-//
-//					@Override
-//					public void onClick(View v) {
-//						if (currentZoomLevel < maxZoomLevel) {
-//							currentZoomLevel++;
-//							mPreview.setCameraZoom(currentZoomLevel);
-//						}
-//					}
-//				});
-//
-//				mZoomControl.setOnZoomOutClickListener(new OnClickListener() {
-//
-//					@Override
-//					public void onClick(View v) {
-//				if (currentZoomLevel > 0) {
-//							currentZoomLevel--;
-//							mPreview.setCameraZoom(currentZoomLevel);
-//						}
-//					}
-//				});
+				// mZoomControl.setOnZoomInClickListener(new OnClickListener() {
+				//
+				// @Override
+				// public void onClick(View v) {
+				// if (currentZoomLevel < maxZoomLevel) {
+				// currentZoomLevel++;
+				// mPreview.setCameraZoom(currentZoomLevel);
+				// }
+				// }
+				// });
+				//
+				// mZoomControl.setOnZoomOutClickListener(new OnClickListener()
+				// {
+				//
+				// @Override
+				// public void onClick(View v) {
+				// if (currentZoomLevel > 0) {
+				// currentZoomLevel--;
+				// mPreview.setCameraZoom(currentZoomLevel);
+				// }
+				// }
+				// });
 
 			} else {
 				mSeekBar.setVisibility(View.INVISIBLE);
@@ -271,29 +282,24 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
+
 	@Override
-	public void onClick(View v) {
+	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
+
+		if(v.getId() == R.id.touch_view){
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				mSeekbarLayout.setVisibility(View.VISIBLE);
 		
-	}
-
-/*	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.menuToggle:
-			if (checkToogle)
-			{
-				honView.setVisibility(View.INVISIBLE);
-				checkToogle = false;
-			} else {
-				honView.setVisibility(View.VISIBLE);
-				checkToogle = true;
+			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+				mSeekbarLayout.setVisibility(View.INVISIBLE);
+				
 			}
-			break;
-
-		default:
-			break;
+			//return true;
 		}
-	}*/
+		
+	
+		return true;
+	}
 
 }
