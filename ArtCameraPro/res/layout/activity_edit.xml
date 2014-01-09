@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@android:color/background_dark" >
+        android:background="@drawable/background_bottom" >
 
         <ImageButton
             android:id="@+id/btSave"
@@ -23,8 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_margin="8dp"
-            android:background="@drawable/cameratoggle_white" />
+            android:background="@drawable/selector_camera_back" />
 
         <ImageButton
             android:id="@+id/btContBright"
@@ -35,69 +34,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/svListContBright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topMenuEdit"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/horizontal_curve_stroke"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:visibility="invisible" >
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="14dp" >
-
-            <RelativeLayout
-                android:id="@+id/layout_topContBright1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/tvCont"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvCont" />
-
-                <SeekBar
-                    android:id="@+id/sbarContBright1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tvCont" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_topContBright2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layout_topContBright1" >
-
-                <TextView
-                    android:id="@+id/tvBright"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvBright" />
-
-                <SeekBar
-                    android:id="@+id/sbarContBright2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tvBright" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/background_dark" >
+        android:background="@drawable/background_bottom" >
 
         <ImageButton
             android:id="@+id/btSelectColor"
@@ -141,6 +82,57 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/svListContBright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topMenuEdit"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/horizontal_curve_stroke"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:id="@+id/layout_topContBright1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvCont" />
+
+            <SeekBar
+                android:id="@+id/sbarContBright1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvCont" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_topContBright2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_topContBright1" >
+
+            <TextView
+                android:id="@+id/tvBright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvBright" />
+
+            <SeekBar
+                android:id="@+id/sbarContBright2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvBright" />
+        </RelativeLayout>
+    </RelativeLayout>
+
     <HorizontalScrollView
         android:id="@+id/svListEffect"
         android:layout_width="match_parent"
@@ -170,7 +162,7 @@
                     android:id="@+id/btOriginalEffect"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@drawable/one" />
+                    android:src="@drawable/origin" />
 
                 <TextView
                     android:id="@+id/textview1After"
@@ -192,7 +184,7 @@
                     android:id="@+id/btDissolve"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/two" />
+                    android:background="@drawable/dissol" />
 
                 <TextView
                     android:id="@+id/textview2After"
@@ -214,7 +206,7 @@
                     android:id="@+id/btEmboss1"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/three" />
+                    android:background="@drawable/emboss1" />
 
                 <TextView
                     android:id="@+id/textview3After"
@@ -236,7 +228,7 @@
                     android:id="@+id/btEmboss2"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/emboss2" />
 
                 <TextView
                     android:id="@+id/textview4After"
@@ -258,7 +250,7 @@
                     android:id="@+id/btContour"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/contout" />
 
                 <TextView
                     android:id="@+id/textview5After"
@@ -280,7 +272,7 @@
                     android:id="@+id/btEdge"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/edge" />
 
                 <TextView
                     android:id="@+id/textview6After"
@@ -302,7 +294,7 @@
                     android:id="@+id/btDiffuse"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/diffusal" />
 
                 <TextView
                     android:id="@+id/textview7After"
@@ -324,7 +316,7 @@
                     android:id="@+id/btNoise"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/noise" />
 
                 <TextView
                     android:id="@+id/textview8After"
@@ -346,7 +338,7 @@
                     android:id="@+id/btPointillize"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/point" />
 
                 <TextView
                     android:id="@+id/textview9After"
@@ -368,7 +360,7 @@
                     android:id="@+id/btOil"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/oil" />
 
                 <TextView
                     android:id="@+id/textview10After"
@@ -410,7 +402,7 @@
                     android:id="@+id/btOriginal"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@drawable/one" />
+                    android:src="@drawable/origin" />
 
                 <TextView
                     android:id="@+id/textview1Color"
@@ -432,7 +424,7 @@
                     android:id="@+id/btWarmVintage"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/two" />
+                    android:background="@drawable/warm_vintage" />
 
                 <TextView
                     android:id="@+id/textview2Color"
@@ -454,7 +446,7 @@
                     android:id="@+id/btColdVintage"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/three" />
+                    android:background="@drawable/cold_vintage" />
 
                 <TextView
                     android:id="@+id/textview3Color"
@@ -476,7 +468,7 @@
                     android:id="@+id/btInvert"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/negative" />
 
                 <TextView
                     android:id="@+id/textview4Color"
@@ -493,12 +485,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_toRightOf="@id/layout_btn4Color" >
-
                 <ImageButton
                     android:id="@+id/btGrayscale"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/bw"/>
 
                 <TextView
                     android:id="@+id/textview5Color"
@@ -520,7 +511,7 @@
                     android:id="@+id/btGain"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/gain" />
 
                 <TextView
                     android:id="@+id/textview6Color"
@@ -542,7 +533,7 @@
                     android:id="@+id/btThreshold1950"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:background="@drawable/threehold" />
 
                 <TextView
                     android:id="@+id/textview7Color"
