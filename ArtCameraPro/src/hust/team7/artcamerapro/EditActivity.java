@@ -48,7 +48,7 @@ public class EditActivity extends Activity implements OnClickListener {
 	private ImageButton btEdge;
 	private ImageButton btDiffuse;
 	private ImageButton btNoise;
-	private ImageButton btPointilize;
+	private ImageButton btPointillize;
 	private ImageButton btOil;
 	// private ImageButton btGaussian;
 	// private ImageButton btBlur;
