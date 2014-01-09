@@ -14,8 +14,11 @@ public class RGBAdjustFilterAction {
 	private float bfactorValue;
 	private int[] colors;
 
-	// private ImageView ivEditImage;
-
+	/**
+	Constructor RGBAdjustFilterAction
+	@param bmp, rfactorValue, gfactorValue, bfactorValue
+	@author 7-A Bui Quang Tan
+	*/
 	public RGBAdjustFilterAction(Bitmap bmp, float rfactorValue,
 			float gfactorValue, float bfactorValue) {
 		this.bmp = bmp;
@@ -26,6 +29,11 @@ public class RGBAdjustFilterAction {
 		this.bfactorValue = bfactorValue;
 	}
 
+	/**
+	Handler RGBAdjust Effect
+	@param no param
+	@author 7-A Bui Quang Tan
+	*/
 	public Bitmap action() {
 		colors = AndroidUtils.bitmapToIntArray(this.bmp);
 		RGBAdjustFilter filter = new RGBAdjustFilter();
