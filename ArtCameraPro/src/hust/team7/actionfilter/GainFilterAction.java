@@ -13,12 +13,22 @@ public class GainFilterAction {
 	private float gainValue = 0.34f;
 	private float biasValue = 0.44f;
 
+	/**
+	Constructor GainFilterAction
+	@param bmp
+	@author 7-A Bui Quang Tan
+	*/
 	public GainFilterAction(Bitmap bmp) {
 		this.bmp = bmp;
 		this.width = bmp.getWidth();
 		this.height = bmp.getHeight();
 	}
 
+	/**
+	Handler Gain Effect
+	@param no param
+	@author 7-A Bui Quang Tan
+	*/
 	public Bitmap action() {
 		colors = AndroidUtils.bitmapToIntArray(this.bmp);
 		GainFilter filter = new GainFilter();
