@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	
+
     <RelativeLayout
         android:id="@+id/topMenuEdit"
         android:layout_width="match_parent"
@@ -62,35 +62,36 @@
                     android:id="@+id/tvCont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tvCont"/>
-                <SeekBar 
+                    android:text="@string/tvCont" />
+
+                <SeekBar
                     android:id="@+id/sbarContBright1"
-                    android:layout_toRightOf="@id/tvCont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_toRightOf="@id/tvCont" />
             </RelativeLayout>
-              <RelativeLayout
+
+            <RelativeLayout
                 android:id="@+id/layout_topContBright2"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" 
-                android:layout_below="@id/layout_topContBright1">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_topContBright1" >
 
                 <TextView
                     android:id="@+id/tvBright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tvBright"/>
-                <SeekBar 
+                    android:text="@string/tvBright" />
+
+                <SeekBar
                     android:id="@+id/sbarContBright2"
-                    android:layout_toRightOf="@id/tvBright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_toRightOf="@id/tvBright" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
@@ -118,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btSelectEffect"
             android:background="@drawable/selector_social_upload" />
-        
+
         <ImageButton
             android:id="@+id/btMoreConfig"
             android:layout_width="wrap_content"
@@ -126,15 +127,21 @@
             android:layout_toRightOf="@id/btSelectFunny"
             android:background="@drawable/selector_social_upload" />
     </RelativeLayout>
-	<ImageView 
-	    android:id="@+id/ivImageEdit"
-	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"
-	    android:layout_above="@id/layoutBottom"
-	    android:layout_marginBottom="140dp"
-	    android:layout_marginTop="20dp"
-	    />
-<HorizontalScrollView
+
+    <RelativeLayout
+        android:id="@+id/layoutImageEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutBottom"
+        android:layout_below="@id/topMenuEdit" >
+
+        <ImageView
+            android:id="@+id/ivImageEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
         android:id="@+id/svListEffect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -239,7 +246,7 @@
                     android:layout_below="@id/btEmboss2"
                     android:text="@string/bt_emboss_2" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn5After"
                 android:layout_width="wrap_content"
@@ -261,7 +268,7 @@
                     android:layout_below="@id/btContour"
                     android:text="@string/bt_contour" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn6After"
                 android:layout_width="wrap_content"
@@ -283,7 +290,7 @@
                     android:layout_below="@id/btEdge"
                     android:text="@string/bt_edge" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn7After"
                 android:layout_width="wrap_content"
@@ -305,7 +312,7 @@
                     android:layout_below="@id/btDiffuse"
                     android:text="@string/bt_diffuse" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn8After"
                 android:layout_width="wrap_content"
@@ -327,7 +334,7 @@
                     android:layout_below="@id/btNoise"
                     android:text="@string/bt_noise" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn9After"
                 android:layout_width="wrap_content"
@@ -349,7 +356,7 @@
                     android:layout_below="@id/btPointillize"
                     android:text="@string/bt_pointillize" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn10After"
                 android:layout_width="wrap_content"
@@ -373,7 +380,7 @@
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
-    
+
     <HorizontalScrollView
         android:id="@+id/svListColor"
         android:layout_width="match_parent"
@@ -479,7 +486,7 @@
                     android:layout_below="@id/btInvert"
                     android:text="@string/bt_invert" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn5Color"
                 android:layout_width="wrap_content"
@@ -501,7 +508,7 @@
                     android:layout_below="@id/btGrayscale"
                     android:text="@string/bt_gray_scale" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn6Color"
                 android:layout_width="wrap_content"
@@ -523,7 +530,7 @@
                     android:layout_below="@id/btGain"
                     android:text="@string/bt_gain" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/layout_btn7Color"
                 android:layout_width="wrap_content"
@@ -547,7 +554,8 @@
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
-	<HorizontalScrollView
+
+    <HorizontalScrollView
         android:id="@+id/svListFunny"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -654,4 +662,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
+
 </RelativeLayout>
