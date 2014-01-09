@@ -21,11 +21,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements  OnTouchListener {
+public class MainActivity extends Activity implements OnTouchListener {
 	private Preview mPreview;
 	private Camera mCamera;
 	private int numberOfCameras;
@@ -40,7 +41,10 @@ public class MainActivity extends Activity implements  OnTouchListener {
 	private ImageButton mBtnSwitchCamera;
 	private ImageButton btChoose;
 	private HorizontalScrollView honView;
+
 	private static final int PICK_IMAGE = 1;
+
+	private ImageView test;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,12 +113,8 @@ public class MainActivity extends Activity implements  OnTouchListener {
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		honView = (HorizontalScrollView) findViewById(R.id.scrollView);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
+
 		btChoose = (ImageButton) findViewById(R.id.btChoose);
-		//mSeekbarLayout = (RelativeLayout) findViewById(R.id.middleMenu);
-		//mSeekbarLayout.setOnTouchListener(this) ;
-		
-		//View view = findViewById(R.id.touch_view);
-		//view.setOnTouchListener(this);
 		btChoose.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -138,6 +138,19 @@ public class MainActivity extends Activity implements  OnTouchListener {
 				}
 			}
 		});
+
+		// mSeekbarLayout = (RelativeLayout) findViewById(R.id.middleMenu);
+		// mSeekbarLayout.setOnTouchListener(this) ;
+
+		// View view = findViewById(R.id.touch_view);
+		// view.setOnTouchListener(this);
+
+		mSeekbarLayout = (RelativeLayout) findViewById(R.id.middleMenu);
+		mSeekbarLayout.setOnTouchListener(this);
+
+		// View view = findViewById(R.id.touch_view);
+		// view.setOnTouchListener(this);
+
 		mBtnTakePicture.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -181,7 +194,7 @@ public class MainActivity extends Activity implements  OnTouchListener {
 				mCamera.startPreview();
 			}
 		});
-		
+
 		btChoose.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -189,7 +202,9 @@ public class MainActivity extends Activity implements  OnTouchListener {
 				Intent intent = new Intent();
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
-				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+				startActivityForResult(
+						Intent.createChooser(intent, "Select Picture"),
+						PICK_IMAGE);
 			}
 		});
 
@@ -273,23 +288,22 @@ public class MainActivity extends Activity implements  OnTouchListener {
 		}
 	}
 
-
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
 
-//		if(v.getId() == R.id.touch_view){
-//			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//				mSeekbarLayout.setVisibility(View.VISIBLE);
-//		
-//			} else if (event.getAction() == MotionEvent.ACTION_UP) {
-//				mSeekbarLayout.setVisibility(View.INVISIBLE);
-//				
-//			}
-//			//return true;
-//		}
-		
-	
+		if (v.getId() == R.id.middleMenu) {
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				mSeekbarLayout.setVisibility(View.VISIBLE);
+				mSeekBar.setVisibility(View.VISIBLE);
+
+			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+				mSeekbarLayout.setVisibility(View.INVISIBLE);
+				mSeekBar.setVisibility(View.INVISIBLE);
+			}
+			// return true;
+		}
+
 		return true;
 	}
 
@@ -297,26 +311,30 @@ public class MainActivity extends Activity implements  OnTouchListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == PICK_IMAGE && data != null && data.getData() != null) {
-	        Uri _uri = data.getData();
+		if (requestCode == PICK_IMAGE && data != null && data.getData() != null) {
+			Uri _uri = data.getData();
 
-	        //User had pick an image.
-	        Cursor cursor = getContentResolver().query(_uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
-	        cursor.moveToFirst();
+			// User had pick an image.
+			Cursor cursor = getContentResolver()
+					.query(_uri,
+							new String[] { android.provider.MediaStore.Images.ImageColumns.DATA },
+							null, null, null);
+			cursor.moveToFirst();
 
-	        //Link to the image
-	        final String imageFilePath = cursor.getString(0);
-	        cursor.close();
-	        
-	        Intent intent = new Intent(MainActivity.this,EditActivity.class);
+			// Link to the image
+			final String imageFilePath = cursor.getString(0);
+			cursor.close();
+
+			Intent intent = new Intent(MainActivity.this, EditActivity.class);
 			try {
 				intent.putExtra("image_name", imageFilePath);
 				startActivity(intent);
 			} catch (Exception e) {
-				Toast.makeText(MainActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, e.getMessage(),
+						Toast.LENGTH_SHORT).show();
 			}
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 }

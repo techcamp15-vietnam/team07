@@ -62,7 +62,7 @@ public class EditActivity extends Activity implements OnClickListener {
 	private ImageButton btInvert;
 	private ImageButton btGrayscale;
 	private ImageButton btGain;
-	private ImageButton btThreshold1950;
+	private ImageView btThreshold1950;
 	private ImageButton btContBright;
 	private ImageButton btSave;
 	private ImageButton btShare;
@@ -209,7 +209,7 @@ public class EditActivity extends Activity implements OnClickListener {
 		btGrayscale.setOnClickListener(this);
 		btGain = (ImageButton) findViewById(R.id.btGain);
 		btGain.setOnClickListener(this);
-		btThreshold1950 = (ImageButton) findViewById(R.id.btThreshold1950);
+		btThreshold1950 = (ImageView) findViewById(R.id.btThreshold1950);
 		btThreshold1950.setOnClickListener(this);
 
 		btSave = (ImageButton) findViewById(R.id.btSave);
@@ -271,7 +271,10 @@ public class EditActivity extends Activity implements OnClickListener {
 				R.anim.bottom_up);
 		Animation bottomDown = AnimationUtils.loadAnimation(getBaseContext(),
 				R.anim.bottom_down);
-
+		Animation menuDropDown = AnimationUtils.loadAnimation(getBaseContext(),
+				R.anim.menu_drop_down);
+		Animation menuDropUp = AnimationUtils.loadAnimation(getBaseContext(),
+				R.anim.menu_drop_up);
 		switch (v.getId()) {
 
 		case R.id.btOriginalEffect:
@@ -467,8 +470,10 @@ public class EditActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.btThreshold1950:
+			
 			if (bmpImage != null) {
 				// GainFilterAction gainFilter = new GainFilterAction(bmpImage);
+				btThreshold1950.setBackgroundResource(R.drawable.rounded_edittext);
 				ThresholdFilterAction thresFilter1950 = new ThresholdFilterAction(
 						bmpImage, 92, 150);
 				bmpResult = thresFilter1950.action();
@@ -573,13 +578,14 @@ public class EditActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btContBright:
 			if (checkbtContBright) {
-				svContBright.setAnimation(bottomDown);
+				svContBright.setAnimation(menuDropDown);
 				svContBright.setVisibility(View.VISIBLE);
+				checkbtContBright=false;
 			} else {
 
-				svContBright.setAnimation(bottomUp);
-				svContBright.setVisibility(View.VISIBLE);
-
+				svContBright.setAnimation(menuDropUp);
+				svContBright.setVisibility(View.INVISIBLE);
+				checkbtContBright=true;
 			}
 			break;
 		case R.id.btShare:

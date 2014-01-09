@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+
             android:background="@drawable/selector_effect_toggle" />
 
         <ImageButton
@@ -529,11 +530,11 @@
                 android:layout_marginRight="8dp"
                 android:layout_toRightOf="@id/layout_btn6Color" >
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/btThreshold1950"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/threehold" />
+                    android:src="@drawable/threehold" />
 
                 <TextView
                     android:id="@+id/textview7Color"
