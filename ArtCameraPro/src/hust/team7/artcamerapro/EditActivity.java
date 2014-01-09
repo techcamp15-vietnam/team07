@@ -28,6 +28,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -67,6 +68,9 @@ public class EditActivity extends Activity implements OnClickListener {
 	private ImageButton btSelectEffect;
 	private HorizontalScrollView svListEffect;
 	private HorizontalScrollView svListColor;
+	private HorizontalScrollView svListFunny;
+	private ImageButton btSelectFunny;
+
 	private ImageView ivEditImage;
 	private Bitmap bmpImage, bmpResult;
 	private String file_name;
@@ -163,7 +167,9 @@ public class EditActivity extends Activity implements OnClickListener {
 
 	/**
 	 * initView
-	 * @param no param
+	 * 
+	 * @param no
+	 *            param
 	 * @author 7-A Bui Quang Tan
 	 */
 	private void initView() {
@@ -213,8 +219,12 @@ public class EditActivity extends Activity implements OnClickListener {
 		btSelectEffect.setOnClickListener(this);
 		btSelectColor = (ImageButton) findViewById(R.id.btSelectColor);
 		btSelectColor.setOnClickListener(this);
+		btSelectFunny = (ImageButton) findViewById(R.id.btSelectFunny);
+		btSelectFunny.setOnClickListener(this);
+		
 		svListEffect = (HorizontalScrollView) findViewById(R.id.svListEffect);
 		svListColor = (HorizontalScrollView) findViewById(R.id.svListColor);
+		svListFunny =(HorizontalScrollView) findViewById(R.id.svListFunny);
 		ivEditImage = (ImageView) findViewById(R.id.ivImageEdit);
 
 		svContBright = (RelativeLayout) findViewById(R.id.svListContBright);
@@ -464,7 +474,6 @@ public class EditActivity extends Activity implements OnClickListener {
 						.show();
 			}
 			break;
-
 		case R.id.btSelectEffect:
 
 			switch (aCheckFlag) {
@@ -487,6 +496,11 @@ public class EditActivity extends Activity implements OnClickListener {
 				aCheckFlag = 0;
 				break;
 			case 3:
+				svListFunny.setAnimation(bottomDown);
+				svListFunny.setVisibility(View.INVISIBLE);
+				svListEffect.setAnimation(bottomUp);
+				svListEffect.setVisibility(View.VISIBLE);
+				aCheckFlag = 2;
 				break;
 			}
 			break;
@@ -513,10 +527,46 @@ public class EditActivity extends Activity implements OnClickListener {
 				aCheckFlag = 1;
 				break;
 			case 3:
+				svListFunny.setAnimation(bottomDown);
+				svListFunny.setVisibility(View.INVISIBLE);
+				svListColor.setAnimation(bottomUp);
+				svListColor.setVisibility(View.VISIBLE);
+				aCheckFlag = 1;
 				break;
+
 			}
 			break;
+		case R.id.btSelectFunny:
+			Log.e("da vao ", " dc log");
+			switch (aCheckFlag) {
 
+			case 0:
+				svListFunny.setAnimation(bottomUp);
+				svListFunny.setVisibility(View.VISIBLE);
+				aCheckFlag = 3;
+				break;
+			case 1:
+				svListColor.setAnimation(bottomDown);
+				svListColor.setVisibility(View.INVISIBLE);
+				svListFunny.setAnimation(bottomUp);
+				svListFunny.setVisibility(View.VISIBLE);
+				aCheckFlag = 3;
+				break;
+			case 2:
+				svListEffect.setAnimation(bottomDown);
+				svListEffect.setVisibility(View.INVISIBLE);
+				svListFunny.setAnimation(bottomUp);
+				svListFunny.setVisibility(View.VISIBLE);
+				aCheckFlag = 3;
+				break;
+			case 3:
+				svListFunny.setAnimation(bottomDown);
+				svListFunny.setVisibility(View.INVISIBLE);
+				aCheckFlag = 0;
+				break;
+
+			}
+			break;
 		case R.id.btContBright:
 			if (checkbtContBright) {
 				svContBright.setAnimation(bottomDown);
