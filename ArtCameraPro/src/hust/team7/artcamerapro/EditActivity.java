@@ -1,11 +1,20 @@
 package hust.team7.artcamerapro;
 
+import hust.team7.actionfilter.ContourFilterAction;
+import hust.team7.actionfilter.DiffuseFilterAction;
+import hust.team7.actionfilter.DissolveFilterAction;
+import hust.team7.actionfilter.EdgeFilterAction;
+import hust.team7.actionfilter.EmbossFilterAction;
 import hust.team7.actionfilter.GainFilterAction;
 import hust.team7.actionfilter.GaussianFilterAction;
 import hust.team7.actionfilter.GrayscaleFilterAction;
 import hust.team7.actionfilter.InvertFilterAction;
+import hust.team7.actionfilter.NoiseFilterAction;
+import hust.team7.actionfilter.OilFilterAction;
+import hust.team7.actionfilter.PointillizeFilterAction;
 import hust.team7.actionfilter.RGBAdjustFilterAction;
 import hust.team7.actionfilter.ThresholdFilterAction;
+import hust.team7.filter.PointillizeFilter;
 
 import java.io.File;
 
@@ -31,8 +40,17 @@ import android.widget.Toast;
 
 public class EditActivity extends Activity implements OnClickListener {
 
+	private ImageButton btOriginalEffect;
+	private ImageButton btDissolve;
+	private ImageButton btEmboss1;
+	private ImageButton btEmboss2;
+	private ImageButton btContour;
+	private ImageButton btEdge;
+	private ImageButton btDiffuse;
+	private ImageButton btNoise;
 	private ImageButton btPointilize;
-	private ImageButton btGaussian;
+	private ImageButton btOil;
+	// private ImageButton btGaussian;
 	// private ImageButton btBlur;
 
 	private ImageButton btSelectColor;
@@ -44,14 +62,13 @@ public class EditActivity extends Activity implements OnClickListener {
 	private ImageButton btGain;
 	private ImageButton btThreshold1950;
 	private ImageButton btContBright;
-	
+
 	private RelativeLayout svContBright;
 	private ImageButton btSelectEffect;
 	private HorizontalScrollView svListEffect;
 	private HorizontalScrollView svListColor;
 	private ImageView ivEditImage;
 	private Bitmap bmpImage, bmpResult;
-	private int check;
 	private String file_name;
 	private Boolean checkbtContBright = true;
 	private int aCheckFlag;
@@ -144,11 +161,34 @@ public class EditActivity extends Activity implements OnClickListener {
 		return rotatedBitmap;
 	}
 
+	/**
+	 * initView
+	 * @param no param
+	 * @author 7-A Bui Quang Tan
+	 */
 	private void initView() {
-		btPointilize = (ImageButton) findViewById(R.id.btPointilize);
-		btPointilize.setOnClickListener(this);
-		btGaussian = (ImageButton) findViewById(R.id.btGaussian);
-		btGaussian.setOnClickListener(this);
+		btOriginalEffect = (ImageButton) findViewById(R.id.btOriginalEffect);
+		btOriginalEffect.setOnClickListener(this);
+		btDissolve = (ImageButton) findViewById(R.id.btDissolve);
+		btDissolve.setOnClickListener(this);
+		btEmboss1 = (ImageButton) findViewById(R.id.btEmboss1);
+		btEmboss1.setOnClickListener(this);
+		btEmboss2 = (ImageButton) findViewById(R.id.btEmboss2);
+		btEmboss2.setOnClickListener(this);
+		btContour = (ImageButton) findViewById(R.id.btContour);
+		btContour.setOnClickListener(this);
+		btEdge = (ImageButton) findViewById(R.id.btEdge);
+		btEdge.setOnClickListener(this);
+		btDiffuse = (ImageButton) findViewById(R.id.btDiffuse);
+		btDiffuse.setOnClickListener(this);
+		btNoise = (ImageButton) findViewById(R.id.btNoise);
+		btNoise.setOnClickListener(this);
+		btPointillize = (ImageButton) findViewById(R.id.btPointillize);
+		btPointillize.setOnClickListener(this);
+		btOil = (ImageButton) findViewById(R.id.btOil);
+		btOil.setOnClickListener(this);
+		// btGaussian = (ImageButton) findViewById(R.id.btGaussian);
+		// btGaussian.setOnClickListener(this);
 		// btBlur = (ImageButton) findViewById(R.id.btBlur);
 		// btBlur.setOnClickListener(this);
 
@@ -166,8 +206,8 @@ public class EditActivity extends Activity implements OnClickListener {
 		btGain.setOnClickListener(this);
 		btThreshold1950 = (ImageButton) findViewById(R.id.btThreshold1950);
 		btThreshold1950.setOnClickListener(this);
-		
-		btContBright =	(ImageButton) findViewById(R.id.btContBright);
+
+		btContBright = (ImageButton) findViewById(R.id.btContBright);
 		btContBright.setOnClickListener(this);
 		btSelectEffect = (ImageButton) findViewById(R.id.btSelectEffect);
 		btSelectEffect.setOnClickListener(this);
@@ -177,7 +217,7 @@ public class EditActivity extends Activity implements OnClickListener {
 		svListColor = (HorizontalScrollView) findViewById(R.id.svListColor);
 		ivEditImage = (ImageView) findViewById(R.id.ivImageEdit);
 
-		svContBright =(RelativeLayout) findViewById(R.id.svListContBright);
+		svContBright = (RelativeLayout) findViewById(R.id.svListContBright);
 		Intent i = getIntent();
 		file_name = i.getStringExtra("image_name");
 		bmpImage = BitmapFactory.decodeFile(file_name);
@@ -207,30 +247,146 @@ public class EditActivity extends Activity implements OnClickListener {
 	@param view 
 	@author 7-A Nguyen Hai Duong
 	 */
+	/**
+	Write all case except 3 case : R.id.btSelectEffect, R.id.btSelectColor, R.id.btContBright
+	@param View v 
+	@author 7-A Bui Quang Tan
+	 */
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		Animation bottomUp = AnimationUtils.loadAnimation(getBaseContext(),
 				R.anim.bottom_up);
 		Animation bottomDown = AnimationUtils.loadAnimation(getBaseContext(),
 				R.anim.bottom_down);
 
 		switch (v.getId()) {
-		case R.id.btPointilize:
 
+		case R.id.btOriginalEffect:
+			if (bmpImage != null) {
+				ivEditImage.setImageBitmap(bmpImage);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
 			break;
 
-		case R.id.btGaussian:
+		case R.id.btDissolve:
 			if (bmpImage != null) {
-				GaussianFilterAction gaussAction = new GaussianFilterAction(
-						bmpImage);
-				bmpResult = gaussAction.action();
+				DissolveFilterAction dissolveFilter = new DissolveFilterAction(
+						bmpImage, 0.8f, 0.15f);
+				bmpResult = dissolveFilter.action();
 				ivEditImage.setImageBitmap(bmpResult);
 			} else {
 				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
 						.show();
 			}
 			break;
-			
+
+		case R.id.btEmboss1:
+			if (bmpImage != null) {
+				EmbossFilterAction embossFilter = new EmbossFilterAction(
+						bmpImage, 4.57f, 0.54f, 0.97f);
+				bmpResult = embossFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btEmboss2:
+			if (bmpImage != null) {
+				EmbossFilterAction embossFilter = new EmbossFilterAction(
+						bmpImage, 3.78f, 0.44f, 0.0f);
+				bmpResult = embossFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btContour:
+			if (bmpImage != null) {
+				ContourFilterAction contourFilter = new ContourFilterAction(
+						bmpImage, 8, 0.77f, 0.27f);
+				bmpResult = contourFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btEdge:
+			if (bmpImage != null) {
+				EdgeFilterAction edgeFilter = new EdgeFilterAction(bmpImage);
+				bmpResult = edgeFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btDiffuse:
+			if (bmpImage != null) {
+				DiffuseFilterAction diffuseFilter = new DiffuseFilterAction(
+						bmpImage, 12);
+				bmpResult = diffuseFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btNoise:
+			if (bmpImage != null) {
+				NoiseFilterAction noiseFilter = new NoiseFilterAction(bmpImage,
+						65, 54);
+				bmpResult = noiseFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btPointillize:
+			if (bmpImage != null) {
+				PointillizeFilterAction pointillizeFilter = new PointillizeFilterAction(
+						bmpImage, 8, 0.2f, 0.17f);
+				bmpResult = pointillizeFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		case R.id.btOil:
+			if (bmpImage != null) {
+				OilFilterAction oilFilter = new OilFilterAction(bmpImage, 2, 4);
+				bmpResult = oilFilter.action();
+				ivEditImage.setImageBitmap(bmpResult);
+			} else {
+				Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+						.show();
+			}
+			break;
+
+		// case R.id.btGaussian:
+		// if (bmpImage != null) {
+		// GaussianFilterAction gaussAction = new GaussianFilterAction(
+		// bmpImage);
+		// bmpResult = gaussAction.action();
+		// ivEditImage.setImageBitmap(bmpResult);
+		// } else {
+		// Toast.makeText(this, "Null bmpImage cmnr", Toast.LENGTH_SHORT)
+		// .show();
+		// }
+		// break;
+
 		case R.id.btOriginal:
 			if (bmpImage != null) {
 				ivEditImage.setImageBitmap(bmpImage);
@@ -284,7 +440,7 @@ public class EditActivity extends Activity implements OnClickListener {
 						.show();
 			}
 			break;
-			
+
 		case R.id.btGain:
 			if (bmpImage != null) {
 				GainFilterAction gainFilter = new GainFilterAction(bmpImage);
@@ -295,11 +451,12 @@ public class EditActivity extends Activity implements OnClickListener {
 						.show();
 			}
 			break;
-			
+
 		case R.id.btThreshold1950:
 			if (bmpImage != null) {
-				//GainFilterAction gainFilter = new GainFilterAction(bmpImage);
-				ThresholdFilterAction thresFilter1950 = new ThresholdFilterAction(bmpImage, 92, 150);
+				// GainFilterAction gainFilter = new GainFilterAction(bmpImage);
+				ThresholdFilterAction thresFilter1950 = new ThresholdFilterAction(
+						bmpImage, 92, 150);
 				bmpResult = thresFilter1950.action();
 				ivEditImage.setImageBitmap(bmpResult);
 			} else {
@@ -307,7 +464,7 @@ public class EditActivity extends Activity implements OnClickListener {
 						.show();
 			}
 			break;
-			
+
 		case R.id.btSelectEffect:
 
 			switch (aCheckFlag) {
@@ -359,21 +516,19 @@ public class EditActivity extends Activity implements OnClickListener {
 				break;
 			}
 			break;
-			
-			
-		case R.id.btContBright:	
-			if(checkbtContBright){
-			svContBright.setAnimation(bottomDown);
-			svContBright.setVisibility(View.VISIBLE);
-			}else {
-				
+
+		case R.id.btContBright:
+			if (checkbtContBright) {
+				svContBright.setAnimation(bottomDown);
+				svContBright.setVisibility(View.VISIBLE);
+			} else {
+
 				svContBright.setAnimation(bottomUp);
 				svContBright.setVisibility(View.VISIBLE);
-				
-				
+
 			}
 			break;
-			
+
 		/*
 		 * case R.id.btSelectEffect: if (checkSelect) {
 		 * 
