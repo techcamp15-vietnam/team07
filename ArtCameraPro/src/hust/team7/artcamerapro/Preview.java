@@ -31,6 +31,8 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 	}
 	
+	
+
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -43,15 +45,29 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
         }
 	}
 
+
+
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-		Camera.Parameters parameters = mCamera.getParameters();
-        parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-        requestLayout();
+		if(mCamera == null){
+			return;
+		}
+		if(mPreviewSize != null){
+			Camera.Parameters parameters = mCamera.getParameters();
+//			List<Size> sizes = parameters.getSupportedPictureSizes();
+//			Size optimalSize = getOptimalPreviewSize(sizes, width, height);
+//			if (optimalSize != null && !parameters.getPictureSize().equals(optimalSize))
+			    parameters.setPictureSize(640, 480);
+	        parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+	        requestLayout();
 
-        mCamera.setParameters(parameters);
+	        mCamera.setParameters(parameters);
+		}
+		
+        
         mCamera.startPreview();
+        //mCamera.startFaceDetection();
 	}
 
 	@Override
@@ -85,7 +101,8 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
         // Try to find an size match aspect ratio and size
         for (Size size : sizes) {
             double ratio = (double) size.width / size.height;
-            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE) continue;
+            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE) 
+            	continue;
             if (Math.abs(size.height - targetHeight) < minDiff) {
                 optimalSize = size;
                 minDiff = Math.abs(size.height - targetHeight);
@@ -102,29 +119,41 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
                 }
             }
         }
+        
+        if(optimalSize == null){
+        	return sizes.get(sizes.size()/2);
+        }
         return optimalSize;
     }
     
     public void switchCamera(Camera camera) {
+    	if(camera == null){
+    		return;
+    	}
         setCamera(camera);
         try {
             camera.setPreviewDisplay(mHolder);
         } catch (IOException exception) {
             Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
         }
-        Camera.Parameters parameters = camera.getParameters();
-        parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-        requestLayout();
+        if(mPreviewSize != null){
+        	Camera.Parameters parameters = camera.getParameters();
+            parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+            requestLayout();
 
-        camera.setParameters(parameters);
+            camera.setParameters(parameters);
+        }
+        
+        
      }
     
     public void setCamera(Camera camera) {
         mCamera = camera;
+        mPreviewSize = null;
+        requestLayout();
         if (mCamera != null) {
         	mCamera.setDisplayOrientation(90);
             mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
-            requestLayout();
         }
     }
     
@@ -187,7 +216,6 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
 			Log.i(TAG, "onShutter");
 		}
 	};
-	
     public void takePicture(){
     	if(mCamera == null){
     		return;
@@ -216,4 +244,47 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback{
     	}
     	return "";
     }
+    
+    private Size getOptimalSize(List<Size> sizes, int w, int h){
+
+        final double ASPECT_TOLERANCE = 0.05;
+        double targetRatio = (double) w / h;
+        if (sizes == null)
+            return null;
+
+        Size optimalSize = null;
+        double minDiff = Double.MAX_VALUE;
+
+        int targetHeight = h;
+
+        for (Size size: sizes)
+        {
+            double ratio = (double) size.width / size.height;
+            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
+                continue;
+            if (Math.abs(size.height - targetHeight) < minDiff)
+            {
+                optimalSize = size;
+                minDiff = Math.abs(size.height - targetHeight);
+            }
+        }
+
+        if (optimalSize == null)
+        {
+            minDiff = Double.MAX_VALUE;
+            for (Size size: sizes)
+            {
+                if (Math.abs(size.height - targetHeight) < minDiff)
+                {
+                    optimalSize = size;
+                    minDiff = Math.abs(size.height - targetHeight);
+                }
+            }
+        }
+
+        return optimalSize;
+
+    }
+
+
 }
