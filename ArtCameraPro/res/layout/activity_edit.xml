@@ -547,5 +547,111 @@
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
-	
+	<HorizontalScrollView
+        android:id="@+id/svListFunny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutBottom"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/horizontal_curve_stroke"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="14dp" >
+
+            <RelativeLayout
+                android:id="@+id/layout_btn1Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp" >
+
+                <ImageView
+                    android:id="@+id/btPointilizeFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/troll" />
+
+                <TextView
+                    android:id="@+id/textview1Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btPointilizeFunny"
+                    android:text="@string/bt_pointillize" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn2Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn1Funny" >
+
+                <ImageView
+                    android:id="@+id/btContourFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/two" />
+
+                <TextView
+                    android:id="@+id/textview2Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btContourFunny"
+                    android:text="@string/bt_contour" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn3Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn2Funny" >
+
+                <ImageView
+                    android:id="@+id/btGaussianFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/three" />
+
+                <TextView
+                    android:id="@+id/textview3Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btGaussianFunny"
+                    android:text="Xray3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_btn4Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn3Funny" >
+
+                <ImageView
+                    android:id="@+id/image4Funny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/four" />
+
+                <TextView
+                    android:id="@+id/textview4Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/image4Funny"
+                    android:text="Xray3" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
 </RelativeLayout>
