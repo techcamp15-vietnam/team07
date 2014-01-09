@@ -26,7 +26,7 @@
             android:background="@drawable/selector_effect_take" />
 
         <ImageButton
-            android:id="@+id/menuToggle"
+            android:id="@+id/btChoose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
