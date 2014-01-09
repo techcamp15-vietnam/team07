@@ -13,6 +13,11 @@ public class ThresholdFilterAction {
 	private int lowerValue;
 	private int upperValue;
 
+	/**
+	Constructor ThresholdFilterAction
+	@param bmp, lowerValue, upperValue
+	@author 7-A Bui Quang Tan
+	*/
 	public ThresholdFilterAction(Bitmap bmp, int lowerValue, int upperValue) {
 		this.bmp = bmp;
 		this.width = bmp.getWidth();
@@ -21,6 +26,11 @@ public class ThresholdFilterAction {
 		this.upperValue = upperValue;
 	}
 
+	/**
+	Handler Threshold Effect
+	@param no param
+	@author 7-A Bui Quang Tan
+	*/
 	public Bitmap action() {
 		colors = AndroidUtils.bitmapToIntArray(this.bmp);
 		ThresholdFilter filter = new ThresholdFilter();
