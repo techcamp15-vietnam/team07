@@ -6,7 +6,6 @@ import hust.team7.actionfilter.DissolveFilterAction;
 import hust.team7.actionfilter.EdgeFilterAction;
 import hust.team7.actionfilter.EmbossFilterAction;
 import hust.team7.actionfilter.GainFilterAction;
-import hust.team7.actionfilter.GaussianFilterAction;
 import hust.team7.actionfilter.GrayscaleFilterAction;
 import hust.team7.actionfilter.InvertFilterAction;
 import hust.team7.actionfilter.NoiseFilterAction;
@@ -14,9 +13,10 @@ import hust.team7.actionfilter.OilFilterAction;
 import hust.team7.actionfilter.PointillizeFilterAction;
 import hust.team7.actionfilter.RGBAdjustFilterAction;
 import hust.team7.actionfilter.ThresholdFilterAction;
-import hust.team7.filter.PointillizeFilter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,6 +27,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -63,6 +64,8 @@ public class EditActivity extends Activity implements OnClickListener {
 	private ImageButton btGain;
 	private ImageButton btThreshold1950;
 	private ImageButton btContBright;
+	private ImageButton btSave;
+	private ImageButton btShare;
 
 	private RelativeLayout svContBright;
 	private ImageButton btSelectEffect;
@@ -193,10 +196,6 @@ public class EditActivity extends Activity implements OnClickListener {
 		btPointillize.setOnClickListener(this);
 		btOil = (ImageButton) findViewById(R.id.btOil);
 		btOil.setOnClickListener(this);
-		// btGaussian = (ImageButton) findViewById(R.id.btGaussian);
-		// btGaussian.setOnClickListener(this);
-		// btBlur = (ImageButton) findViewById(R.id.btBlur);
-		// btBlur.setOnClickListener(this);
 
 		btOriginal = (ImageButton) findViewById(R.id.btOriginal);
 		btOriginal.setOnClickListener(this);
@@ -213,6 +212,10 @@ public class EditActivity extends Activity implements OnClickListener {
 		btThreshold1950 = (ImageButton) findViewById(R.id.btThreshold1950);
 		btThreshold1950.setOnClickListener(this);
 
+		btSave = (ImageButton) findViewById(R.id.btSave);
+		btSave.setOnClickListener(this);
+		btShare = (ImageButton) findViewById(R.id.btShare);
+		btShare.setOnClickListener(this);
 		btContBright = (ImageButton) findViewById(R.id.btContBright);
 		btContBright.setOnClickListener(this);
 		btSelectEffect = (ImageButton) findViewById(R.id.btSelectEffect);
@@ -230,9 +233,10 @@ public class EditActivity extends Activity implements OnClickListener {
 		svContBright = (RelativeLayout) findViewById(R.id.svListContBright);
 		Intent i = getIntent();
 		file_name = i.getStringExtra("image_name");
+		//file_name = Environment.getExternalStorageDirectory() + "/image.jpg";
 		bmpImage = BitmapFactory.decodeFile(file_name);
+		//bmpImage = rotateBitmap(file_name);
 		bmpResult = bmpImage;
-		// bmpImage = rotateBitmap(file_name);
 		// File tempPhoto = new File(file_name);
 		// try {
 		// if (!tempPhoto.exists()) {
@@ -578,35 +582,72 @@ public class EditActivity extends Activity implements OnClickListener {
 
 			}
 			break;
+		case R.id.btShare:
+            //Save first
+            String temp = createFileName();
+			
+			ByteArrayOutputStream b = new ByteArrayOutputStream();
+			bmpResult.compress(Bitmap.CompressFormat.JPEG, 85, b);
 
-		/*
-		 * case R.id.btSelectEffect: if (checkSelect) {
-		 * 
-		 * svListEffect.setAnimation(bottomUp);
-		 * svListEffect.setVisibility(View.VISIBLE); checkSelect = false; }
-		 * 
-		 * else {
-		 * 
-		 * svListEffect.setAnimation(bottomDown);
-		 * 
-		 * svListEffect.setVisibility(View.INVISIBLE); checkSelect = true; }
-		 * break;
-		 */
+			File file = new File(temp);
+			try {
+				file.createNewFile();
+				FileOutputStream fo = new FileOutputStream(file);
+				fo.write(b.toByteArray());	
+				fo.close();
+			} catch (Exception e) {
+				Log.e("e", "exception");
+			}
+			//Now share
+			//File file = new File(file_name);
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            sharingIntent.setType("image/jpeg");            
 
-		/*
-		 * case R.id.btBlur: check = 3;
-		 * btMoreConfig.setVisibility(View.VISIBLE); if (bmpImage != null) {
-		 * BlurFilterAction blurAction = new BlurFilterAction(bmpImage);
-		 * bmpResult = blurAction.action();
-		 * ivEditImage.setImageBitmap(bmpResult); } else { Toast.makeText(this,
-		 * "Null bmpImage cmnr", Toast.LENGTH_SHORT) .show(); } break;
-		 */
-		// backup phonex
+            startActivity(Intent.createChooser(sharingIntent , "Share to your friends by"));
+            break;
+		
+		case R.id.btSave:
+			
+			String sFileName = createFileName();
+			
+			ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+			bmpResult.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
 
-		/*
-		 * case R.id.btMoreConfig: switch (check) { case 1: break; case 2:
-		 * break; case 3: break; }
-		 */
+			File f = new File(sFileName);
+			try {
+				f.createNewFile();
+				FileOutputStream fo = new FileOutputStream(f);
+				fo.write(bytes.toByteArray());	
+				fo.close();
+				Toast.makeText(this, "Saved to "+sFileName, Toast.LENGTH_SHORT).show();
+			} catch (Exception e) {
+				Log.e("e", "exception");
+			}
+			break;
 		}
+	}
+		
+	/**
+	create file for app (if not existed) and save image 
+	@param 
+	@author 7-B Nguyen Quoc Hung
+	*/
+	private String createFileName(){
+		
+		String state = Environment.getExternalStorageState();
+		if(state.equals(Environment.MEDIA_MOUNTED)){   		
+			File folder = new File(Environment.getExternalStorageDirectory() + "/ArtCameraPro");
+			boolean success = true;
+			if (!folder.exists()) {
+			    success = folder.mkdir();
+			} 
+			String sFileName = Environment.getExternalStorageDirectory() + "/ArtCameraPro" + File.separator + System.currentTimeMillis() + ".jpg";
+			return sFileName;
+			
+		}
+		return "";
 	}
 }
