@@ -3,8 +3,10 @@ package hust.team7.artcamerapro;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,8 +38,9 @@ public class MainActivity extends Activity implements  OnTouchListener {
 	int defaultCameraId;
 	private ImageButton mBtnTakePicture;
 	private ImageButton mBtnSwitchCamera;
-	private ImageButton mBtnMenuToogle;
+	private ImageButton btChoose;
 	private HorizontalScrollView honView;
+	private static final int PICK_IMAGE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,16 +105,17 @@ public class MainActivity extends Activity implements  OnTouchListener {
 	private void initButtons() {
 		mBtnTakePicture = (ImageButton) findViewById(R.id.snapBtn);
 		mBtnSwitchCamera = (ImageButton) findViewById(R.id.switchCamera);
-		mBtnMenuToogle = (ImageButton) findViewById(R.id.menuToggle);
+		btChoose = (ImageButton) findViewById(R.id.btChoose);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		honView = (HorizontalScrollView) findViewById(R.id.scrollView);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
+		btChoose = (ImageButton) findViewById(R.id.btChoose);
 		//mSeekbarLayout = (RelativeLayout) findViewById(R.id.middleMenu);
 		//mSeekbarLayout.setOnTouchListener(this) ;
 		
-		View view = findViewById(R.id.touch_view);
-		view.setOnTouchListener(this);
-		mBtnMenuToogle.setOnClickListener(new OnClickListener() {
+		//View view = findViewById(R.id.touch_view);
+		//view.setOnTouchListener(this);
+		btChoose.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -177,8 +181,17 @@ public class MainActivity extends Activity implements  OnTouchListener {
 				mCamera.startPreview();
 			}
 		});
+		
+		btChoose.setOnClickListener(new OnClickListener() {
 
-		// mZoomControl = (ZoomControls)findViewById(R.id.zoom_control);
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setType("image/*");
+				intent.setAction(Intent.ACTION_GET_CONTENT);
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+			}
+		});
 
 	}
 
@@ -253,28 +266,6 @@ public class MainActivity extends Activity implements  OnTouchListener {
 						mPreview.setCameraZoom(progress);
 					}
 				});
-				// mZoomControl.setOnZoomInClickListener(new OnClickListener() {
-				//
-				// @Override
-				// public void onClick(View v) {
-				// if (currentZoomLevel < maxZoomLevel) {
-				// currentZoomLevel++;
-				// mPreview.setCameraZoom(currentZoomLevel);
-				// }
-				// }
-				// });
-				//
-				// mZoomControl.setOnZoomOutClickListener(new OnClickListener()
-				// {
-				//
-				// @Override
-				// public void onClick(View v) {
-				// if (currentZoomLevel > 0) {
-				// currentZoomLevel--;
-				// mPreview.setCameraZoom(currentZoomLevel);
-				// }
-				// }
-				// });
 
 			} else {
 				mSeekBar.setVisibility(View.INVISIBLE);
@@ -287,19 +278,45 @@ public class MainActivity extends Activity implements  OnTouchListener {
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
 
-		if(v.getId() == R.id.touch_view){
-			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				mSeekbarLayout.setVisibility(View.VISIBLE);
-		
-			} else if (event.getAction() == MotionEvent.ACTION_UP) {
-				mSeekbarLayout.setVisibility(View.INVISIBLE);
-				
-			}
-			//return true;
-		}
+//		if(v.getId() == R.id.touch_view){
+//			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//				mSeekbarLayout.setVisibility(View.VISIBLE);
+//		
+//			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+//				mSeekbarLayout.setVisibility(View.INVISIBLE);
+//				
+//			}
+//			//return true;
+//		}
 		
 	
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == PICK_IMAGE && data != null && data.getData() != null) {
+	        Uri _uri = data.getData();
+
+	        //User had pick an image.
+	        Cursor cursor = getContentResolver().query(_uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
+	        cursor.moveToFirst();
+
+	        //Link to the image
+	        final String imageFilePath = cursor.getString(0);
+	        cursor.close();
+	        
+	        Intent intent = new Intent(MainActivity.this,EditActivity.class);
+			try {
+				intent.putExtra("image_name", imageFilePath);
+				startActivity(intent);
+			} catch (Exception e) {
+				Toast.makeText(MainActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+			}
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
 	}
 
 }
