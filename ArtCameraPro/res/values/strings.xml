@@ -23,5 +23,27 @@
     <string name="bt_diffuse">Diffuse</string>
     <string name="bt_noise">Noise</string>
     <string name="bt_oil">Oil</string>
-
+    <string name="bt_yuno_funny">Yuno</string>
+	<string name="bt_no_funny">No</string>
+	<string name="bt_isee_funny">I see</string>
+	<string name="bt_milk_funny">Milk</string>
+	<string name="bt_serious_funny">Serious</string>
+	<string name="bt_sweat_funny">Sweat</string>
+	<string name="bt_overjoyed_funny">Over Joyed</string>
+	<string name="bt_perfect_funny">Perfect</string>
+	<string name="bt_happy_funny">Happy</string>
+	<string name="bt_fts_funny">F**k that sh*t</string>
+	<string name="bt_lol_funny">LOL</string>
+	<string name="bt_pft_funny">Pft lulz</string>
+	<string name="bt_troll_funny">Troll</string>
+	<string name="bt_cry_funny">Cry</string>
+	<string name="bt_fa_funny">Forever Alone</string>
+	<string name="bt_fap_funny">Fap fap</string>
+	<string name="bt_fuu_funny">Fuu...</string>
+	<string name="bt_gusta_mucho_funny">Gusta Mucho</string>
+	<string name="bt_kiddingme_funny">Kidding me</string>
+	<string name="bt_okay_funny">Okay</string>
+	<string name="bt_sadtroll_funny">Sad Troll</string>
+	<string name="bt_levels">Levels</string>
+	<string name="bt_posterize">Posterize</string>
 </resources>
