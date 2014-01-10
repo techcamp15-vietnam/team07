@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@drawable/background_bottom" >
+        android:background="@drawable/background_top" >
 
         <ImageButton
             android:id="@+id/btSave"
@@ -16,21 +16,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="8dp"
-            android:background="@drawable/cameratoggle_white" />
+            android:background="@drawable/save" />
+
+        <ImageButton
+            android:id="@+id/btDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btSave"
+            android:background="@drawable/selector_tick_toggle" />
 
         <ImageButton
             android:id="@+id/btBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/selector_camera_back" />
-
-        <ImageButton
-            android:id="@+id/btContBright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/btBack"
-            android:background="@drawable/selector_menu_toggle" />
+            android:background="@drawable/back_camera" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -45,34 +45,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-
             android:background="@drawable/selector_effect_toggle" />
 
         <ImageButton
             android:id="@+id/btSelectEffect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/btSelectColor"
             android:layout_toRightOf="@id/btSelectColor"
-            android:background="@drawable/selector_menu_toggle" />
+            android:background="@drawable/selector_constrast_toggle" />
 
         <ImageButton
             android:id="@+id/btSelectFunny"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/btSelectColor"
             android:layout_toRightOf="@id/btSelectEffect"
-            android:background="@drawable/selector_social_upload" />
+            android:background="@drawable/selector_troll_toggle" />
 
         <ImageButton
             android:id="@+id/btShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/btSelectFunny"
+            android:layout_alignBottom="@id/btSelectColor"
+            android:layout_alignParentRight="true"
             android:background="@drawable/selector_social_upload" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layoutImageEdit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/layoutBottom"
         android:layout_below="@id/topMenuEdit" >
@@ -80,7 +82,7 @@
         <ImageView
             android:id="@+id/ivImageEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -139,10 +141,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/layoutBottom"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
-        android:background="@drawable/horizontal_curve_stroke"
+        android:background="@drawable/buble2"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:visibility="invisible" >
@@ -163,7 +164,9 @@
                     android:id="@+id/btOriginalEffect"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@drawable/origin" />
+                    android:src="@drawable/origin"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview1After"
@@ -185,7 +188,9 @@
                     android:id="@+id/btDissolve"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/dissol" />
+                    android:src="@drawable/dissol"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview2After"
@@ -207,7 +212,9 @@
                     android:id="@+id/btEmboss1"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/emboss1" />
+                    android:src="@drawable/emboss1"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview3After"
@@ -229,7 +236,9 @@
                     android:id="@+id/btEmboss2"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/emboss2" />
+                    android:src="@drawable/emboss2"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview4After"
@@ -251,7 +260,9 @@
                     android:id="@+id/btContour"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/contout" />
+                    android:src="@drawable/contout"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview5After"
@@ -273,7 +284,9 @@
                     android:id="@+id/btEdge"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/edge" />
+                    android:src="@drawable/edge" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview6After"
@@ -295,7 +308,9 @@
                     android:id="@+id/btDiffuse"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/diffusal" />
+                    android:src="@drawable/diffusal" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview7After"
@@ -317,7 +332,9 @@
                     android:id="@+id/btNoise"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/noise" />
+                    android:src="@drawable/noise" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview8After"
@@ -339,7 +356,9 @@
                     android:id="@+id/btPointillize"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/point" />
+                    android:src="@drawable/point" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview9After"
@@ -361,7 +380,9 @@
                     android:id="@+id/btOil"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/oil" />
+                    android:src="@drawable/oil"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview10After"
@@ -379,10 +400,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/layoutBottom"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
-        android:background="@drawable/horizontal_curve_stroke"
+        android:background="@drawable/buble1"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:visibility="invisible" >
@@ -403,7 +423,10 @@
                     android:id="@+id/btOriginal"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@drawable/origin" />
+                    
+                    android:src="@drawable/origin" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview1Color"
@@ -425,7 +448,9 @@
                     android:id="@+id/btWarmVintage"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/warm_vintage" />
+                    android:src="@drawable/warm_vintage" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview2Color"
@@ -447,7 +472,9 @@
                     android:id="@+id/btColdVintage"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/cold_vintage" />
+                    android:src="@drawable/cold_vintage" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview3Color"
@@ -469,7 +496,9 @@
                     android:id="@+id/btInvert"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/negative" />
+                    android:src="@drawable/negative" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview4Color"
@@ -486,11 +515,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_toRightOf="@id/layout_btn4Color" >
+
                 <ImageButton
                     android:id="@+id/btGrayscale"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/bw"/>
+                    android:src="@drawable/bw"
+                    android:scaleType="centerInside"
+                    android:padding="2dp" />
 
                 <TextView
                     android:id="@+id/textview5Color"
@@ -512,7 +544,9 @@
                     android:id="@+id/btGain"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/gain" />
+                    android:src="@drawable/gain" 
+                    android:scaleType="centerInside"
+                    android:padding="2dp"/>
 
                 <TextView
                     android:id="@+id/textview6Color"
@@ -525,15 +559,17 @@
 
             <RelativeLayout
                 android:id="@+id/layout_btn7Color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110dip"
+                android:layout_height="110dip"
                 android:layout_marginRight="8dp"
                 android:layout_toRightOf="@id/layout_btn6Color" >
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/btThreshold1950"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
+                    android:scaleType="centerInside"
+                      android:padding="2dp"
                     android:src="@drawable/threehold" />
 
                 <TextView
@@ -543,6 +579,50 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@id/btThreshold1950"
                     android:text="@string/bt_threshold_1950" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn8Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn7Color" >
+
+                <ImageButton
+                    android:id="@+id/btLevels"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/level" />
+
+                <TextView
+                    android:id="@+id/textview8Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btLevels"
+                    android:text="@string/bt_levels" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn9Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn8Color" >
+
+                <ImageButton
+                    android:id="@+id/btPosterize"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:background="@drawable/potisize" />
+
+                <TextView
+                    android:id="@+id/textview9Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btPosterize"
+                    android:text="@string/bt_posterize" />
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>
@@ -573,18 +653,18 @@
                 android:layout_marginRight="8dp" >
 
                 <ImageView
-                    android:id="@+id/btPointilizeFunny"
+                    android:id="@+id/btYunoFunny"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@drawable/troll" />
+                    android:src="@drawable/yuno" />
 
                 <TextView
                     android:id="@+id/textview1Funny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@id/btPointilizeFunny"
-                    android:text="@string/bt_pointillize" />
+                    android:layout_below="@id/btYunoFunny"
+                    android:text="@string/bt_yuno_funny" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -595,18 +675,18 @@
                 android:layout_toRightOf="@id/layout_btn1Funny" >
 
                 <ImageView
-                    android:id="@+id/btContourFunny"
+                    android:id="@+id/btNoFunny"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/two" />
+                    android:src="@drawable/no" />
 
                 <TextView
                     android:id="@+id/textview2Funny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@id/btContourFunny"
-                    android:text="@string/bt_contour" />
+                    android:layout_below="@id/btNoFunny"
+                    android:text="@string/bt_no_funny" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -617,18 +697,18 @@
                 android:layout_toRightOf="@id/layout_btn2Funny" >
 
                 <ImageView
-                    android:id="@+id/btGaussianFunny"
+                    android:id="@+id/btMilkFunny"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/three" />
+                    android:src="@drawable/milk" />
 
                 <TextView
                     android:id="@+id/textview3Funny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@id/btGaussianFunny"
-                    android:text="Xray3" />
+                    android:layout_below="@id/btMilkFunny"
+                    android:text="@string/bt_milk_funny" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -639,18 +719,392 @@
                 android:layout_toRightOf="@id/layout_btn3Funny" >
 
                 <ImageView
-                    android:id="@+id/image4Funny"
+                    android:id="@+id/btSeriousFunny"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:background="@drawable/four" />
+                    android:src="@drawable/serious" />
 
                 <TextView
                     android:id="@+id/textview4Funny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@id/image4Funny"
-                    android:text="Xray3" />
+                    android:layout_below="@id/btSeriousFunny"
+                    android:text="@string/bt_serious_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn5Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn4Funny" >
+
+                <ImageView
+                    android:id="@+id/btSweatFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/sweat" />
+
+                <TextView
+                    android:id="@+id/textview5Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btSweatFunny"
+                    android:text="@string/bt_sweat_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn6Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn5Funny" >
+
+                <ImageView
+                    android:id="@+id/btIseeFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/isee" />
+
+                <TextView
+                    android:id="@+id/textview6Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btIseeFunny"
+                    android:text="@string/bt_isee_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn7Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn6Funny" >
+
+                <ImageView
+                    android:id="@+id/btOverjoyedFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/overjoyed" />
+
+                <TextView
+                    android:id="@+id/textview7Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btOverjoyedFunny"
+                    android:text="@string/bt_overjoyed_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn8Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn7Funny" >
+
+                <ImageView
+                    android:id="@+id/btPerfectFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/perfect" />
+
+                <TextView
+                    android:id="@+id/textview8Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btPerfectFunny"
+                    android:text="@string/bt_perfect_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn9Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn8Funny" >
+
+                <ImageView
+                    android:id="@+id/btHappyFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/happy" />
+
+                <TextView
+                    android:id="@+id/textview9Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btHappyFunny"
+                    android:text="@string/bt_happy_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn10Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn9Funny" >
+
+                <ImageView
+                    android:id="@+id/btFtsFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/fts" />
+
+                <TextView
+                    android:id="@+id/textview10Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btFtsFunny"
+                    android:text="@string/bt_fts_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn11Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn10Funny" >
+
+                <ImageView
+                    android:id="@+id/btLolFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/lol" />
+
+                <TextView
+                    android:id="@+id/textview11Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btLolFunny"
+                    android:text="@string/bt_lol_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn12Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn11Funny" >
+
+                <ImageView
+                    android:id="@+id/btPftFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/pft" />
+
+                <TextView
+                    android:id="@+id/textview12Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btPftFunny"
+                    android:text="@string/bt_pft_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn13Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn12Funny" >
+
+                <ImageView
+                    android:id="@+id/btTrollFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/troll" />
+
+                <TextView
+                    android:id="@+id/textview13Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btTrollFunny"
+                    android:text="@string/bt_troll_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn14Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn13Funny" >
+
+                <ImageView
+                    android:id="@+id/btCryFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/cry" />
+
+                <TextView
+                    android:id="@+id/textview14Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btCryFunny"
+                    android:text="@string/bt_cry_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn15Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn14Funny" >
+
+                <ImageView
+                    android:id="@+id/btFaFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/fa" />
+
+                <TextView
+                    android:id="@+id/textview15Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btFaFunny"
+                    android:text="@string/bt_fa_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn16Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn15Funny" >
+
+                <ImageView
+                    android:id="@+id/btFapFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/fap" />
+
+                <TextView
+                    android:id="@+id/textview16Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btFapFunny"
+                    android:text="@string/bt_fap_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn17Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn16Funny" >
+
+                <ImageView
+                    android:id="@+id/btFuuFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/fuu" />
+
+                <TextView
+                    android:id="@+id/textview17Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btFuuFunny"
+                    android:text="@string/bt_fuu_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn18Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn17Funny" >
+
+                <ImageView
+                    android:id="@+id/btGustaMuchoFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/gusta_mucho" />
+
+                <TextView
+                    android:id="@+id/textview18Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btGustaMuchoFunny"
+                    android:text="@string/bt_gusta_mucho_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn19Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn18Funny" >
+
+                <ImageView
+                    android:id="@+id/btKiddingmeFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/kidding_me" />
+
+                <TextView
+                    android:id="@+id/textview19Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btKiddingmeFunny"
+                    android:text="@string/bt_kiddingme_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn20Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn19Funny" >
+
+                <ImageView
+                    android:id="@+id/btOkayFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/okay" />
+
+                <TextView
+                    android:id="@+id/textview20Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btOkayFunny"
+                    android:text="@string/bt_okay_funny" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/layout_btn21Funny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/layout_btn20Funny" >
+
+                <ImageView
+                    android:id="@+id/btSadtrollFunny"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:src="@drawable/sad_troll" />
+
+                <TextView
+                    android:id="@+id/textview21Funny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/btSadtrollFunny"
+                    android:text="@string/bt_sadtroll_funny" />
             </RelativeLayout>
         </RelativeLayout>
     </HorizontalScrollView>

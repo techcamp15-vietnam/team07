@@ -7,48 +7,43 @@
     <FrameLayout
         android:id="@+id/preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/layoutBottom" >
+        android:layout_height="match_parent" >
     </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/topMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_curve" >
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/background_bottom" >
+        android:background="@android:color/background_dark" >
 
         <ImageButton
             android:id="@+id/snapBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/selector_effect_take" />
+            android:background="@drawable/camera_default" />
 
-        <ImageButton
-            android:id="@+id/btChoose"
+      <ImageButton
+            android:id="@+id/btAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/selector_menu_toggle" />
+           	android:layout_marginTop="15dp"
+			android:background="@drawable/add_file" 
+			/>
 
-        <RelativeLayout
-            android:id="@+id/bottomSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_curve" >
-
-            <ImageButton
-                android:id="@+id/switchCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/cameratoggle_white" />
-        </RelativeLayout>d
     </RelativeLayout>
 
     <HorizontalScrollView
@@ -161,13 +156,12 @@
 
     <RelativeLayout
         android:id="@+id/middleMenu"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/scrollView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:visibility="invisible" >
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/topMenu" >
 
         <hust.team7.ui.VerticalSeekBar
             android:id="@+id/seekBar1"
