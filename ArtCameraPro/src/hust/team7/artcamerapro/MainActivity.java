@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.hardware.Camera;
+import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -108,13 +109,13 @@ public class MainActivity extends Activity implements OnTouchListener {
 
 	private void initButtons() {
 		mBtnTakePicture = (ImageButton) findViewById(R.id.snapBtn);
-		mBtnSwitchCamera = (ImageButton) findViewById(R.id.switchCamera);
-		btChoose = (ImageButton) findViewById(R.id.btChoose);
+//		mBtnSwitchCamera = (ImageButton) findViewById(R.id.switchCamera);
+		btChoose = (ImageButton) findViewById(R.id.btAdd);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		honView = (HorizontalScrollView) findViewById(R.id.scrollView);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 
-		btChoose = (ImageButton) findViewById(R.id.btChoose);
+		btChoose = (ImageButton) findViewById(R.id.btAdd);
 		btChoose.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -151,49 +152,60 @@ public class MainActivity extends Activity implements OnTouchListener {
 		// View view = findViewById(R.id.touch_view);
 		// view.setOnTouchListener(this);
 
+		final AutoFocusCallback myAutoFocusCallback = new AutoFocusCallback(){
+
+			  @Override
+			  public void onAutoFocus(boolean arg0, Camera arg1) {
+			   // TODO Auto-generated method stub
+			   
+			  }};
+		
 		mBtnTakePicture.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				mPreview.takePicture();
+				mCamera.autoFocus(myAutoFocusCallback);
 			}
 		});
+		
 
-		mBtnSwitchCamera.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// check for availability of multiple cameras
-				if (numberOfCameras == 1) {
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							MainActivity.this);
-					builder.setMessage(getString(R.string.camera_alert))
-							.setNeutralButton("Close", null);
-					AlertDialog alert = builder.create();
-					alert.show();
-				}
-
-				// OK, we have multiple cameras.
-				// Release this camera -> cameraCurrentlyLocked
-				if (mCamera != null) {
-					mCamera.stopPreview();
-					mPreview.setCamera(null);
-					mCamera.release();
-					mCamera = null;
-				}
-
-				// Acquire the next camera and request Preview to reconfigure
-				// parameters.
-				mCamera = Camera.open((cameraCurrentlyLocked + 1)
-						% numberOfCameras);
-				cameraCurrentlyLocked = (cameraCurrentlyLocked + 1)
-						% numberOfCameras;
-				mPreview.switchCamera(mCamera);
-
-				// Start the preview
-				mCamera.startPreview();
-			}
-		});
+//		mBtnSwitchCamera.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// check for availability of multiple cameras
+//				if (numberOfCameras == 1) {
+//					AlertDialog.Builder builder = new AlertDialog.Builder(
+//							MainActivity.this);
+//					builder.setMessage(getString(R.string.camera_alert))
+//							.setNeutralButton("Close", null);
+//					AlertDialog alert = builder.create();
+//					alert.show();
+//				}
+//
+//				// OK, we have multiple cameras.
+//				// Release this camera -> cameraCurrentlyLocked
+//				if (mCamera != null) {
+//					mCamera.stopPreview();
+//					mPreview.setCamera(null);
+//					mCamera.release();
+//					mCamera = null;
+//				}
+//
+//				// Acquire the next camera and request Preview to reconfigure
+//				// parameters.
+//				mCamera = Camera.open((cameraCurrentlyLocked + 1)
+//						% numberOfCameras);
+//				cameraCurrentlyLocked = (cameraCurrentlyLocked + 1)
+//						% numberOfCameras;
+//				mPreview.switchCamera(mCamera);
+//
+//				// Start the preview
+//				mCamera.startPreview();
+//			}
+//		});
 
 		btChoose.setOnClickListener(new OnClickListener() {
 
